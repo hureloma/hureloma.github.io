@@ -4,12 +4,7 @@
 {% include head.html %}
 
 <head>
-  <meta charset="utf-8">
-  <title>Page not found</title>
-
-  <!-- 5초 후 journal 페이지로 이동 -->
-  <meta http-equiv="refresh" content="5; url=journal/" />
-
+{% if page.url == "/404.html" %}<meta http-equiv="refresh" content="5; url={{ site.baseurl }}/journal" />{% endif %}
 </head>
 
 <body>
