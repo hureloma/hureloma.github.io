@@ -1,167 +1,113 @@
-p h o t o r a m a 
-====================
+## Jasper2
 
-![photorama](https://raw.githubusercontent.com/sunbliss/photorama/gh-pages/photorama_thumb.gif)
+[![Build Status](https://github.com/jekyllt/jasper2/actions/workflows/jekyll_build.yml/badge.svg)](https://github.com/jekyllt/jasper2/actions/workflows/jekyll_build.yml)
+[![Ruby](https://img.shields.io/badge/ruby-2.6.3-blue.svg?style=flat)](http://travis-ci.org/jekyllt/jasper2)
+[![Jekyll](https://img.shields.io/badge/jekyll-3.9.0-blue.svg?style=flat)](http://travis-ci.org/jekyllt/jasper2)
 
-----------
+This is a full-featured port of Ghost's default theme [Casper](https://github.com/tryghost/casper)
+[v2.1.9](https://github.com/TryGhost/Casper/releases/tag/2.1.9) for [Jekyll](https://jekyllrb.com/) / [GitHub Pages](https://pages.github.com/).
 
----> [DEMO](https://sunbliss.github.io/photorama/ "DEMO")  <---
+## Live Demo
 
-----------
+[Ghost's Casper](https://demo.ghost.io) // [Jasper2](https://jekyllt.github.io/jasper2)
 
-A theme for **jekyll**. 
+![home page](https://raw.githubusercontent.com/jekyllt/jasper2/master/assets/screenshot-desktop.jpg)
 
-Created for gh-pages (project page).
 
-This template was crafted having in mind the photobloggers and the artists.
+## Features
 
-It uses [Clean Blog](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll "Clean Blog") as its basis.
+* Out of the box support for multiple authors (via `_data/authors.yml`)
+* Full author information including: picture, bio, website, twitter, facebook, etc.
+* Tag description(s) and personalised covers (via `_data/tags.yml`)
+* Related posts view at the bottom of each post
+* All Ghost default pages: Author page(s), Tag page(s), About page(s), 404, etc.
+* Pagination (infinite scrolling or standard pagination, i.e. posts across multiple pages)
+* Atom Feeds by [Jekyll-feed](https://github.com/jekyll/jekyll-feed)
+* Toggleable subscribe button (requires an external service)
+* Code Syntax Highlight with [highlight.js](https://highlightjs.org/)
+* Support for Google Analytics tracking
+* Support for Disqus comments (not Ghost standard)
 
-----------
-## Change Log
 
-### Version 2.2 (4/23/2018)
+## Getting Started
 
-<a href="https://github.com/sunbliss/photorama/wiki/How-to-get-SSL-on-Jekyll%3F"> How to get SSL Certificate (Https) For Jekyll</a>
+### Deployment
 
-### Version 2.1 (3/22/2017)
+There are several alternatives to building and deploying the site:
 
-* Fixed script loading. 
-* Fixed padding bottom for the navbar toggle menu.
+1. build the site with [GitHub Actions](https://github.com/features/actions) which pushes 
+the resulting files (the contents of `_site/` or `../jasper2-pages/`) 
+to the *gh-pages* branch. This is the approach that is currently used. See 
+[jekyll_build.yml](.github/workflows/jekyll_build.yml) for more details.
 
+2. generate the site locally (more details below) and push the resulting
+HTML to a Github repository, that GitHub Pages then host;
 
-### Version 2.0 (2/4/2017)
+3. build the site with [travis-ci](https://travis-ci.org/) (with goodies from
+[jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the
+generated HTML files to a *gh-pages* branch.
 
-* HTTPS is now enforced. 
+4. deploy the static website with Jekyll-compatible hosters, such as https://www.netlify.com/, that allow for deployment from the Github repo and publish the website using CDNs. Netlify has a free starter offer.
 
-~~**Custom Domains are not supported.**~~
+For option **2)** simply clone this repository (*master branch*), and then run
+`bundle exec jekyll serve` inside the directory. Upload the resulting `_site/` (or `../jasper2-pages/`)
+contents to your repository (*master branch* if uploading as your personal page
+(e.g. username.github.io) or *gh-pages branch* if uploading as a project page
+(as for the [demo](https://github.com/jekyllt/jasper2/tree/gh-pages)).
 
-~~For the time being, the only way to apply a custom domain name is by removing HTTPS as of the previous version. 
-Hoping Github developers will give its users the ability to add a custom domain served under security.~~
+For option **3)** you will need to set up travis-ci for your personal fork. Briefly all you
+need then is to change your details in *[\_config.yml](_config.yml)* so that you can push
+to your github repo. You will also need to generate a secure key to add to your
+*[.travis.yml](.travis.yml)* (you can find more info on how to do it in that file).
+Also make sure you read the documentation from
+[jekyll-travis](https://github.com/mfenner/jekyll-travis). This approach has clear
+advantages in that you simply push your file changes to GitHub and all the HTML files
+are generated for you and pushed to *gh-pages*. Also you get to know if everything is
+still fine with your site builds. Don't hesitate to contact me if you still have any
+issues (see below about issue tracking).
 
-### Version 1.2 (1/31/2017)
+### Author Pages
 
-* Fixed footer code so that the twitter icon links to the twitter_username instead of instagram_username.
+In order to properly generate author pages you need to rename the field *author* in the
+front matter of every post to match that of your each author's *username* as defined
+in the *[\_data/authors.yml](_data/authors.yml)* file.
+With the latest update, multiple author blogs are now supported out of the box.
 
-### Version 1.1 (7/15/2016)
+### Compiling Styles
 
-* Improved galleries and search section.
-* Better rendering of the header text.
+Following on the way Casper styles are compiled as [described here](https://github.com/tryghost/casper#development):
 
-### Version 1.0 (6/19/2016)
-* Initial Template
+Jasper2 styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node and Gulp installed globally. After that, from the theme's root directory:
 
-----------
+```bash
+$ npm install
+$ gulp
+```
 
- **IMPORTANT!!!**
-================
+Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
 
-### Before you begin: Change the URL and the BASEURL as well as the internal nav links in the _config.yml
+## Issues and Contributing
 
-The **URL** should say `https://yourusername.github.io`
+This install builds well with Ruby v2.6.3 and Jekyll v3.9.0. If you run into any problems
+please log them on the [issue tracker](https://github.com/jekyllt/jasper2/issues).
 
-The **BASEURL** should say `/repositoryname`
+Feel free pull-request your patches and fixes.
 
-**Internal nav** should say
+## Thanks
 
-  nav:
+Many thanks to the Ghost team for all the design work. Also many thanks to all contributors,
+that help keeping the project alive and updated :smile:
 
-  - GALLERY: `"https://yourusername.github.io/repositoryname/gallery/"`
-  - JOURNAL: `"https://yourusername.github.io/repositoryname/journal/"`
-  - ABOUT: `"https://yourusername.github.io/repositoryname/about/`"
 
-If there are problems with loading assets like CSS files and images, make sure that both **URL** and **BASEURL** are set correctly!!! 
+## Copyright & License
 
-----------
+Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
 
-~~**NOT FOR HTTPS served repos!!!**~~
-==================================
-
-~~* Applies for v1.2!~~
-
-If you want to use your **own domain** go to the root of your project's repository, create a CNAME file and add a line with your domain name, e.g. `www.yourdomain.com`.
-
-Go to your domain name registrar and add a CNAME record pointing your domain to GitHub Pages:
-- type: CNAME
-- host: www.yourdomainname.com
-- answer: yourusername.github.io/repositoryname
-- TTL: 300
-
-----------
-
-Usage
-============ 
-
-###Quick Start
-
-1. [Fork this repository](https://github.com/sunbliss/photorama/fork) to get started. 
-2. Go to `https://github.com/yourusername/photorama/settings`
-3. Rename the repository to your new project, e.g. *myphotoblog*
-2. Create a new branch called `gh-pages` in your repository. 
-3. Go to the branches directory at `https://github.com/yourusername/repositoryname/branches` and *change* **default branch** to **gh-pages**.
-4. Delete **master** branch. 
-3. GitHub will build your site automatically and publish it at `https://yourusername.github.io/repositoryname/`.  
-
-----------
-
-- The homepage welcomes the visitors with 3 animated photos of your choice. It is recommended that all three are landscape orientated for best view.
-
-To change the welcome content at the far left of the Home page go here: `/index.html` and fill the responding lines of the YAML with your desired text.
-
-----------
-
-- To enable **disqus** comments in the posts, change their front matter for comments to 'true'.
-
-You must have a registered account in disqus, where you will also register a forum for your website.
-
-Find the line `s.src = '//yourproject.disqus.com/embed.js';  // ` in the disqus_comments.html and REPLACE 'yourproject' with your forum shortname.
-
-----------
-
-- In order to send **newsletters** about your posts to your subscribers, you should register an account in [tinyletter](http://www.tinyletter.com " tinyletter").
-
-Find the line `'https://tinyletter.com/yourproject', ` in the *newsletter.html* and replace 'yourproject' with your registered website.
-
-You can always ommit the newsletter rendering by deleting the line `{% include newsletter.html %}
-` in the *default.html* layout.
-
-----------
-
-If you want to use the matching **NEWSLETTER** template, you must always create a new file  by copying its respective index.html and renaming it to e.g. 2016-March-newsletter.html and then save it inside the folder and the accompanying images inside the 'images folder', so it can be accessed to your viewers through their browser. In this case the root url for the above newsletter will be ***http://yourgithubusername.github.io/yourproject/2016-March-newsletter.html***. Copy this link and replace this part of the code `http://www.yoursite.com/newsletter/year-month-newsletter` with it.
-
-----------
-
-**TAGS** and **CATEGORIES** of the posts 
-
-When you add a tag or a category name in the front matter of a post, don't forget to add the responding markdown files in /journal/tag/ folder and in /journal/category folder, so they can always render when browsing the journal or searching in the respective page.
-
-----------
-
-All the credits and the helpers can be found at **ABOUT** page.
-
-
-----------
-
-Read <a href="https://sunbliss.github.io/photorama/journal/images-size-for-better-performance/">**this**</a> post if you want to ensure your website always loads fast.
-
-
-----------
-
-I hope you will find it useful for your projects, photographic or not.
-
-
-----------
-
-
-##License
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Filippo Oretti, Dario Andrei
+Copyright (C) 2015-2021 - Released under the MIT License.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
